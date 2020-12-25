@@ -15,5 +15,7 @@ namespace iMusic.DataModel.Models
         public Artist Artist { get; set; }
 
         public ICollection<Song> Songs { get; set; }
+
+        public ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }

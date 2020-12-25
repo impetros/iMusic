@@ -19,5 +19,7 @@ namespace iMusic.DataModel.Models
         public IList<ArtistSong> ArtistSongs { get; set; } = new List<ArtistSong>();
 
         public IList<SongGenre> SongGenres { get; set; } = new List<SongGenre>();
+
+        public ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }
