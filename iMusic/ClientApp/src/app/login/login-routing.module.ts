@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginService } from '../core/swagger';
 import { LoginComponent } from './login.component';
 
 const routes: Routes = [

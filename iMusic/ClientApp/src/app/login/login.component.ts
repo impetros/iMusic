@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../core/custom/api/auth-service';
 import { MustMatch } from '../core/helpers/mustmatch';
-import { LoginRequest, LoginResponse, LoginService } from '../core/swagger';
+import { LoginRequest } from '../core/swagger';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
 
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder) { 
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { 
   }
 
   ngOnInit(): void {
@@ -42,10 +44,13 @@ export class LoginComponent implements OnInit {
         emailOrUsername: this.loginForm.controls["username"].value,
         password: this.loginForm.controls["password"].value
       }
-      this.loginService.login(loginRequest).subscribe(repoonse => {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(repoonse, null, 4));
+      this.authService.login(loginRequest).subscribe(repoonse => {
+        this.router.navigate(['/home']);    
       }, error => {
-        alert('error');
+        this.loginForm.reset();    
+          this.loginForm.setErrors({    
+            invalidLogin: true    
+          });
       } )
     } 
   } 

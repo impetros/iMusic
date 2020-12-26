@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginService } from '../core/swagger';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../core/custom/api/auth-service';
 
 
 @NgModule({
@@ -17,6 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginService]
+  providers: [AuthService]
 })
 export class LoginModule { }

@@ -24,23 +24,6 @@ produces:
 schemes:
 - "https"
 paths:
-  login:
-    post:
-      tags:
-        - "login"
-      summary: "Login"
-      description: "Login request"
-      operationId: "login"
-      parameters:
-        - in: "body"
-          name: "body"
-          description: "The object sent to login"
-          required: true
-          schema:
-            $ref: "#/definitions/LoginRequest"
-      responses:
-        default:
-          description: "successful operation"
 definitions:
   LoginRequest:
     type: object
