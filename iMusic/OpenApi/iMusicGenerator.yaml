@@ -1,0 +1,30 @@
+swagger: "2.0"
+info:
+  description: "iMusic"
+  version: "1.0.0"
+  title: "iMusic DTOs"
+  termsOfService: "TODO: add iMusic site ref"
+  contact:
+    email: "TODO: add iMusic email"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:5000/api"
+basePath: "/"
+tags:
+- name: "user"
+  description: "Operations about user"
+  externalDocs:
+    description: "Find out more about our store"
+    url: "http://swagger.io"
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+- "http"
+paths:
+definitions:
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
