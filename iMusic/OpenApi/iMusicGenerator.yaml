@@ -24,7 +24,44 @@ produces:
 schemes:
 - "http"
 paths:
+  login:
+    post:
+      tags:
+        - "login"
+      summary: "Login"
+      description: "Login request"
+      operationId: "login"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "The object sent to login"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginRequest"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/LoginResponse"
 definitions:
+  LoginRequest:
+    type: object
+    description: "This object will be send to login"
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  LoginResponse:
+    type: object
+    description: "This object will be send as response if login was successful"
+    properties:
+      email:
+        type: string
+      fullName:
+        type: string      
+      role:
+        type: string
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

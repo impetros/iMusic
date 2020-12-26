@@ -28,9 +28,15 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <Content Remove="OpenApi\**\*" />
+    <None Remove="OpenApi\**\*" />
+    <Content Remove="ClientApp\**\*" />
+    <None Remove="ClientApp\**\*" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Swagger\" />
+    <Folder Include="Swagger\Model\" />
     <Folder Include="DataModel\" />
     <Folder Include="DataModel\Context\" />
     <Folder Include="DataModel\Models\" />
@@ -38,6 +44,10 @@
     <Folder Include="DataModel\UnitOfWork\" />
     <Folder Include="DataModel\Repository\Interfaces\" />
     <Folder Include="DataModel\Repository\Implementation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="OpenApi\**\*" />
+    <Compile Remove="ClientApp\**\*" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
