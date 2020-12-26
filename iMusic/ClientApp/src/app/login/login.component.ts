@@ -12,4 +12,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  switchSignUp() {
+    document.querySelector(".container")?.classList.add("sign-up-mode");
+  }
+
+  switchSignIn() {
+    document.querySelector(".container")?.classList.remove("sign-up-mode");
+  }
+
 }
