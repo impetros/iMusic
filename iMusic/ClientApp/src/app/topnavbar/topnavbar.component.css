@@ -1,6 +1,9 @@
 .topnav {
     overflow: hidden;
     background-image: linear-gradient(-45deg, #4481eb 100%, #04befe 0%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   
   .topnav a {

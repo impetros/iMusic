@@ -1,5 +1,11 @@
 <div class="topnav">
-    <a class="active" href="/home">Home</a>
+    <div class="firstPart">
+        <a routerLink="/home">Home</a>
+    </div>
+    <div class="secondPart">
+        <a *ngIf="!authService.isAuthenticated()" routerLink="/login">Login</a>
+        <a *ngIf="authService.isAuthenticated()" routerLink="/login" (click)="authService.logout()">Logout</a>
+    </div>
     <!-- <a href="#news">News</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a> -->

@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopnavbarComponent } from './topnavbar/topnavbar.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtTokenInterceptorService } from './core/interceptors/jwt-token-interceptor';
+import { AuthService } from './core/custom/api/auth-service';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,13 @@ import { JwtTokenInterceptorService } from './core/interceptors/jwt-token-interc
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptorService, multi: true }], 
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptorService, multi: true },
+    AuthService
+  ], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
