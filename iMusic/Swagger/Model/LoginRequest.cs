@@ -31,19 +31,19 @@ namespace iMusic.Dto.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginRequest" /> class.
         /// </summary>
-        /// <param name="email">email.</param>
+        /// <param name="emailOrUsername">emailOrUsername.</param>
         /// <param name="password">password.</param>
-        public LoginRequest(string email = default(string), string password = default(string))
+        public LoginRequest(string emailOrUsername = default(string), string password = default(string))
         {
-            this.Email = email;
+            this.EmailOrUsername = emailOrUsername;
             this.Password = password;
         }
         
         /// <summary>
-        /// Gets or Sets Email
+        /// Gets or Sets EmailOrUsername
         /// </summary>
-        [DataMember(Name="email", EmitDefaultValue=false)]
-        public string Email { get; set; }
+        [DataMember(Name="emailOrUsername", EmitDefaultValue=false)]
+        public string EmailOrUsername { get; set; }
 
         /// <summary>
         /// Gets or Sets Password
@@ -59,7 +59,7 @@ namespace iMusic.Dto.Model
         {
             var sb = new StringBuilder();
             sb.Append("class LoginRequest {\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  EmailOrUsername: ").Append(EmailOrUsername).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -96,9 +96,9 @@ namespace iMusic.Dto.Model
 
             return 
                 (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                    this.Email.Equals(input.Email))
+                    this.EmailOrUsername == input.EmailOrUsername ||
+                    (this.EmailOrUsername != null &&
+                    this.EmailOrUsername.Equals(input.EmailOrUsername))
                 ) && 
                 (
                     this.Password == input.Password ||
@@ -116,8 +116,8 @@ namespace iMusic.Dto.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                if (this.EmailOrUsername != null)
+                    hashCode = hashCode * 59 + this.EmailOrUsername.GetHashCode();
                 if (this.Password != null)
                     hashCode = hashCode * 59 + this.Password.GetHashCode();
                 return hashCode;

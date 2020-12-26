@@ -18,7 +18,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { LoginRequest } from '../model/loginRequest';
-import { LoginResponse } from '../model/loginResponse';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class LoginService {
 
-    protected basePath = 'http://localhost:5000/api/';
+    protected basePath = 'https://localhost:5001/api/';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -63,9 +62,9 @@ export class LoginService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public login(body: LoginRequest, observe?: 'body', reportProgress?: boolean): Observable<LoginResponse>;
-    public login(body: LoginRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<LoginResponse>>;
-    public login(body: LoginRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<LoginResponse>>;
+    public login(body: LoginRequest, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public login(body: LoginRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public login(body: LoginRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
     public login(body: LoginRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
@@ -76,7 +75,6 @@ export class LoginService {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -92,7 +90,7 @@ export class LoginService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<LoginResponse>('post',`${this.basePath}login`,
+        return this.httpClient.request<any>('post',`${this.basePath}login`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

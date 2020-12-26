@@ -9,7 +9,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost:5000/api"
+host: "localhost:5001/api"
 basePath: "/"
 tags:
 - name: "user"
@@ -22,7 +22,7 @@ consumes:
 produces:
   - application/json
 schemes:
-- "http"
+- "https"
 paths:
   login:
     post:
@@ -39,16 +39,14 @@ paths:
           schema:
             $ref: "#/definitions/LoginRequest"
       responses:
-        "200":
+        default:
           description: "successful operation"
-          schema:
-            $ref: "#/definitions/LoginResponse"
 definitions:
   LoginRequest:
     type: object
     description: "This object will be send to login"
     properties:
-      email:
+      emailOrUsername:
         type: string
       password:
         type: string

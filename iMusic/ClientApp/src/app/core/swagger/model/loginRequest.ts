@@ -14,6 +14,6 @@
  * This object will be send to login
  */
 export interface LoginRequest { 
-    email?: string;
+    emailOrUsername?: string;
     password?: string;
 }

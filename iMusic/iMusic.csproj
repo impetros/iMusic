@@ -21,6 +21,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +46,7 @@
     <Folder Include="DataModel\UnitOfWork\" />
     <Folder Include="DataModel\Repository\Interfaces\" />
     <Folder Include="DataModel\Repository\Implementation\" />
+    <Folder Include="OAuth2\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="OpenApi\**\*" />

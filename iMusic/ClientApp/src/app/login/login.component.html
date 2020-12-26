@@ -1,15 +1,22 @@
 <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="#" class="sign-in-form">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogInSubmit()" class="sign-in-form">
           <h2 class="title">Sign in</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" />
+            <input formControlName="username" type="text" placeholder="Username" />
+          </div>
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" />
+            <input formControlName="password" type="password" placeholder="Password" />
+          </div>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
           </div>
           <input type="submit" value="Login" class="btn solid" />
           <p class="social-text">Or Sign in with social platforms</p>
