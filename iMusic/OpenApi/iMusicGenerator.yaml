@@ -106,6 +106,31 @@ definitions:
         type: array
         items: 
           $ref: '#/definitions/ArtistDTO'
+  ShoppingCartDTO:
+    type: object
+    properties:
+      shoppingCartId:
+        type: number
+      price:
+        type: number      
+        format: float
+      date:
+        type: string
+        format: date-time
+      cartitems:
+        type: array
+        items: 
+          $ref: '#/definitions/ShoppingCartItemDTO'
+  ShoppingCartItemDTO:
+    type: object
+    properties:
+      price:
+        type: number
+        format: float
+      albumId:
+        type: number
+      songId:
+        type: number
   LoginRequest:
     type: object
     description: "This object will be send to login"
