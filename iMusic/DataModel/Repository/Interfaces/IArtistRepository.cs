@@ -4,5 +4,6 @@ namespace iMusic.DataModel.Repository.Interfaces
 {
     public interface IArtistRepository : IGenericRepository<Artist>
     {
+        public Artist GetByName(string name);
     }
 }
