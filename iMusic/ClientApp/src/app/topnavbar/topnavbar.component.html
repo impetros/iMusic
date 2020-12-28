@@ -1,6 +1,9 @@
 <div class="topnav">
     <div class="firstPart">
         <a routerLink="/home">Home</a>
+        <a routerLink="/songs">Artists</a>
+        <a routerLink="/songs">Songs</a>
+        <a routerLink="/songs">Albums</a>
     </div>
     <div class="secondPart">
         <a *ngIf="!authService.isAuthenticated()" routerLink="/login">Login</a>

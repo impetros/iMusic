@@ -3,7 +3,6 @@ using iMusic.DataModel.Models;
 using iMusic.DataModel.Repository.Interfaces;
 using iMusic.DataModel.UnitOfWork;
 using iMusic.Dto.Model;
-using iMusic.OAuth2;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -29,7 +28,7 @@ namespace iMusic.Controllers
             User user = AuthenticateUser(loginRequest);
             if (user != null)
             {
-                var tokenString = Utils.GenerateJWT(user, _config);
+                var tokenString = iMusic.OAuth2.Utils.GenerateJWT(user, _config);
                 response = Ok(new
                 {
                     token = tokenString,

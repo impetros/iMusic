@@ -47,6 +47,8 @@
     <Folder Include="DataModel\Repository\Interfaces\" />
     <Folder Include="DataModel\Repository\Implementation\" />
     <Folder Include="OAuth2\" />
+    <Folder Include="Mapper\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="OpenApi\**\*" />

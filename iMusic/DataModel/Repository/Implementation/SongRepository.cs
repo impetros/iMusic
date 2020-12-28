@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using iMusic.DataModel.Context;
 using iMusic.DataModel.Models;
@@ -10,6 +11,11 @@ namespace iMusic.DataModel.Repository.Implementation
     public class SongRepository : GenericRepository<Song>, ISongRepository
     {
         public SongRepository(AppDbContext context) : base(context) { }
+
+        public List<Song> GetAllSongs()
+        {
+            return _context.Songs.Include(p => p.ArtistSongs).ThenInclude(p => p.Artist).ThenInclude(p => p.ArtistDetails).ToList();
+        }
 
         public Song GetByName(string songName, string artistName)
         {

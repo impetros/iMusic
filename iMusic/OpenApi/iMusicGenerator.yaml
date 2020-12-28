@@ -24,7 +24,64 @@ produces:
 schemes:
 - "https"
 paths:
+  songs:
+    get:
+      tags:
+        - "song"
+      operationId: "getAllSongs"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SongDTO'
 definitions:
+  ArtistDTO:
+    type: object
+    properties:
+      artistId:
+        type: number
+      name:
+        type: string
+      bio:
+        type: string
+      image:
+        type: string
+  AlbumDTO:
+    type: object
+    properties:
+      albumId:
+        type: number
+      name:
+        type: string
+      price:
+        type: number
+        format: float
+      image:
+        type: string
+      songs:
+        type: array
+        items:
+          $ref: '#/definitions/SongDTO'      
+  SongDTO:
+    type: object
+    properties:
+      songId:
+        type: number
+      name:
+        type: string
+      length:
+        type: string
+      price:
+        type: number
+        format: float
+      image:
+        type: string
+      artists:
+        type: array
+        items: 
+          $ref: '#/definitions/ArtistDTO'
   LoginRequest:
     type: object
     description: "This object will be send to login"
