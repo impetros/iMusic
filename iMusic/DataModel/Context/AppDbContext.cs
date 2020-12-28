@@ -59,7 +59,7 @@ namespace iMusic.DataModel.Context
             modelBuilder.Entity<Album>()
                 .HasOne(p => p.Artist)
                 .WithMany(b => b.Albums)
-                .HasForeignKey(p => p.AlbumId);
+                .HasForeignKey(p => p.ArtistId);
 
             // Album -> Song (ONE TO MANY)
             modelBuilder.Entity<Song>()
