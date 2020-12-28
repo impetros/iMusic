@@ -8,9 +8,6 @@ namespace iMusic
     public class FillMockDataDb
     {
         #region CONSTANTS
-        //Users
-        readonly static string user_ZARZAND = "zarzand";
-
         //Music Genres
         readonly static string musicgenre_POP = "Pop";
         readonly static string musicgenre_HIPHOP = "Hip-Hop";
@@ -42,19 +39,23 @@ namespace iMusic
 
         private static void FillUsers()
         {
-            
+            AddUser("zarzand", "zarzand@gmail.com", "zarzand");
+        }
+
+        private static void AddUser(string username, string email, string password)
+        {
             using (var uow = new UnitOfWork())
             {
                 var userRepo = uow.GetRepository<IUserRepository>();
                 bool userExists;
-                userExists = userRepo.GetByUsername(user_ZARZAND) != null;
+                userExists = userRepo.GetByUsername(username) != null;
                 if (!userExists)
                 {
                     var newUser = new User()
                     {
-                        Username = user_ZARZAND,
-                        Email = user_ZARZAND + "@gmail.com",
-                        Password = user_ZARZAND
+                        Username = username,
+                        Email = email,
+                        Password = password
                     };
                     userRepo.Add(newUser);
                 }
@@ -65,152 +66,71 @@ namespace iMusic
 
         private static void FillMusicGenres()
         {
+            AddMusicGenre(musicgenre_POP);
+            AddMusicGenre(musicgenre_HIPHOP);
+            AddMusicGenre(musicgenre_CLASSIC);
+        }
+
+        private static void AddMusicGenre(string musicGenreName)
+        {
 
             using (var uow = new UnitOfWork())
             {
                 var musicGenreRepo = uow.GetRepository<IMusicGenreRepository>();
                 bool musicGenreExists;
-                musicGenreExists = musicGenreRepo.GetByName(musicgenre_POP) != null;
+                musicGenreExists = musicGenreRepo.GetByName(musicGenreName) != null;
                 if (!musicGenreExists)
                 {
                     var newMusicGenre = new MusicGenre()
                     {
-                        Name = musicgenre_POP,
+                        Name = musicGenreName,
                         //TODO Add image
                     };
                     musicGenreRepo.Add(newMusicGenre);
                 }
-
-                musicGenreExists = musicGenreRepo.GetByName(musicgenre_HIPHOP) != null;
-                if (!musicGenreExists)
-                {
-                    var newMusicGenre = new MusicGenre()
-                    {
-                        Name = musicgenre_HIPHOP,
-                        //TODO Add image
-                    };
-                    musicGenreRepo.Add(newMusicGenre);
-                }
-
-                musicGenreExists = musicGenreRepo.GetByName(musicgenre_CLASSIC) != null;
-                if (!musicGenreExists)
-                {
-                    var newMusicGenre = new MusicGenre()
-                    {
-                        Name = musicgenre_CLASSIC,
-                        //TODO Add image
-                    };
-                    musicGenreRepo.Add(newMusicGenre);
-                }
-
                 uow.Save();
             }
         }
 
         private static void FillArtists()
         {
-            using(var uow = new UnitOfWork())
+            AddArtist(artist_ARIANA_GRANDE, "Ariana Grande began performing onstage when she was a child. Her involvement in a Broadway play at age 15, followed by some " +
+                            "small TV parts, helped her land the role of Cat on TV's Victorious. She followed that with the spinoff Sam & Cat and then dove headfirst into a chart-topping" +
+                            " musical career, releasing five albums: Yours Truly (2013), My Everything (2014), Dangerous Woman (2016), Sweetener (2018) and Thank U, Next (2019).");
+            AddArtist(artist_MARIAH_CAREY, "At 18 Mariah Carey signed with Columbia Records, and her first album had four No. 1 singles, including \"Vision of Love\" " +
+                            "and \"I Don't Wanna Cry.\" Carey went on to generate several more albums (later with other studios) and top singles, becoming one of " +
+                            "the most commercially successful artists of all time with 19 No. 1 hits and more than 200 million records sold.");
+            AddArtist(artist_EMINEM, "Eminem is an American rapper, record producer and actor known as one of the most controversial and best-selling artists of the early 21st century." +
+                            "Rapper, actor and music producer Eminem is one of the best-selling musicians of the 21st century and one of the most influential rappers of all time.");
+            AddArtist(artist_TRAVIS_SCOTT, "Jacques Bermon Webster II known professionally as Travis Scott, is an American rapper, singer, songwriter, and record producer. Scott's musical style " +
+                            "has been described as a fusion of traditional hip hop, lo-fi and ambient. In 2012, Scott signed his first major-label contract with Epic Records.");
+            AddArtist(artist_AMADEUS_MOZART, "Wolfgang Amadeus Mozart, in full Johann Chrysostom Wolfgang Amadeus Mozart, baptized as Johannes Chrysostomus Wolfgangus Theophilus Mozart, (born January 27, " +
+                            "1756, Salzburg, archbishopric of Salzburg [Austria]—died December 5, 1791, Vienna), Austrian composer, widely recognized as one of the greatest composers in the history of " +
+                            "Western music. With Haydn and Beethoven he brought to its height the achievement of the Viennese Classical school. Unlike any other composer in musical history, he wrote " +
+                            "in all the musical genres of his day and excelled in every one. His taste, his command of form, and his range of expression have made him seem the most universal of all " +
+                            "composers; yet, it may also be said that his music was written to accommodate the specific tastes of particular audiences.");
+            AddArtist(artist_FREDERIC_CHOPIN, "Considered Poland's greatest composer, Frédéric Chopin focused his efforts on piano composition and was a strong influence on composers who followed him." +
+                            "Frédéric Chopin was a renowned Polish and French composer who published his first composition at age 7 and began performing one year later. In 1832, he moved to Paris, socialized " +
+                            "with high society and was known as an excellent piano teacher. His piano compositions were highly influential.");
+        }
+
+        private static void AddArtist(string artistName, string artistDetailsBio)
+        {
+            using (var uow = new UnitOfWork())
             {
                 var artistRepo = uow.GetRepository<IArtistRepository>();
                 bool artistExists;
 
-                artistExists = artistRepo.GetByName(artist_ARIANA_GRANDE) != null;
-                if(!artistExists)
-                {
-                    var newArtist = new Artist()
-                    {
-                        Name = artist_ARIANA_GRANDE,
-                        //TODO Add image
-                        ArtistDetails = new ArtistDetails()
-                        {
-                            Bio = "Ariana Grande began performing onstage when she was a child. Her involvement in a Broadway play at age 15, " +
-                            "followed by some small TV parts, helped her land the role of Cat on TV's Victorious. She followed that with the spinoff Sam & Cat and then dove headfirst into a chart-topping musical career, " +
-                            "releasing five albums: Yours Truly (2013), My Everything (2014), Dangerous Woman (2016), Sweetener (2018) and Thank U, Next (2019)."
-                        }
-                    };
-                    artistRepo.Add(newArtist);
-                }
-
-                artistExists = artistRepo.GetByName(artist_MARIAH_CAREY) != null;
+                artistExists = artistRepo.GetByName(artistName) != null;
                 if (!artistExists)
                 {
                     var newArtist = new Artist()
                     {
-                        Name = artist_MARIAH_CAREY,
+                        Name = artistName,
                         //TODO Add image
                         ArtistDetails = new ArtistDetails()
                         {
-                            Bio = "At 18 Mariah Carey signed with Columbia Records, and her first album had four No. 1 singles, including \"Vision of Love\" " +
-                            "and \"I Don't Wanna Cry.\" Carey went on to generate several more albums (later with other studios) and top singles, becoming one of " +
-                            "the most commercially successful artists of all time with 19 No. 1 hits and more than 200 million records sold."
-                        }
-                    };
-                    artistRepo.Add(newArtist);
-                }
-
-                artistExists = artistRepo.GetByName(artist_EMINEM) != null;
-                if (!artistExists)
-                {
-                    var newArtist = new Artist()
-                    {
-                        Name = artist_EMINEM,
-                        //TODO Add image
-                        ArtistDetails = new ArtistDetails()
-                        {
-                            Bio = "Eminem is an American rapper, record producer and actor known as one of the most controversial and best-selling artists of the early 21st century." +
-                            "Rapper, actor and music producer Eminem is one of the best-selling musicians of the 21st century and one of the most influential rappers of all time."
-                        }
-                    };
-                    artistRepo.Add(newArtist);
-                }
-
-                artistExists = artistRepo.GetByName(artist_TRAVIS_SCOTT) != null;
-                if (!artistExists)
-                {
-                    var newArtist = new Artist()
-                    {
-                        Name = artist_TRAVIS_SCOTT,
-                        //TODO Add image
-                        ArtistDetails = new ArtistDetails()
-                        {
-                            Bio = "Jacques Bermon Webster II known professionally as Travis Scott, is an American rapper, singer, songwriter, and record producer. Scott's musical style " +
-                            "has been described as a fusion of traditional hip hop, lo-fi and ambient. In 2012, Scott signed his first major-label contract with Epic Records."
-                        }
-                    };
-                    artistRepo.Add(newArtist);
-                }
-
-                artistExists = artistRepo.GetByName(artist_AMADEUS_MOZART) != null;
-                if (!artistExists)
-                {
-                    var newArtist = new Artist()
-                    {
-                        Name = artist_AMADEUS_MOZART,
-                        //TODO Add image
-                        ArtistDetails = new ArtistDetails()
-                        {
-                            Bio = "Wolfgang Amadeus Mozart, in full Johann Chrysostom Wolfgang Amadeus Mozart, baptized as Johannes Chrysostomus Wolfgangus Theophilus Mozart, (born January 27, " +
-                            "1756, Salzburg, archbishopric of Salzburg [Austria]—died December 5, 1791, Vienna), Austrian composer, widely recognized as one of the greatest composers in the history of " +
-                            "Western music. With Haydn and Beethoven he brought to its height the achievement of the Viennese Classical school. Unlike any other composer in musical history, he wrote " +
-                            "in all the musical genres of his day and excelled in every one. His taste, his command of form, and his range of expression have made him seem the most universal of all " +
-                            "composers; yet, it may also be said that his music was written to accommodate the specific tastes of particular audiences."
-                        }
-                    };
-                    artistRepo.Add(newArtist);
-                }
-
-                artistExists = artistRepo.GetByName(artist_FREDERIC_CHOPIN) != null;
-                if (!artistExists)
-                {
-                    var newArtist = new Artist()
-                    {
-                        Name = artist_FREDERIC_CHOPIN,
-                        //TODO Add image
-                        ArtistDetails = new ArtistDetails()
-                        {
-                            Bio = "Considered Poland's greatest composer, Frédéric Chopin focused his efforts on piano composition and was a strong influence on composers who followed him." +
-                            "Frédéric Chopin was a renowned Polish and French composer who published his first composition at age 7 and began performing one year later. In 1832, he moved to Paris, socialized " +
-                            "with high society and was known as an excellent piano teacher. His piano compositions were highly influential. "
+                            Bio = artistDetailsBio
                         }
                     };
                     artistRepo.Add(newArtist);
@@ -222,69 +142,33 @@ namespace iMusic
 
         private static void FillAlbums()
         {
-            using(var uow = new UnitOfWork())
+            AddAlbum(album_THANK_U_NEXT, artist_ARIANA_GRANDE, 10.0f);
+            AddAlbum(album_MERRY_CHRISTMAS, artist_MARIAH_CAREY, 7.5f);
+            AddAlbum(album_THE_EMINEM_SHOW , artist_EMINEM, 15.0f);
+            AddAlbum(album_ASTROWORLD, artist_TRAVIS_SCOTT, 13.5f);
+        }
+
+        private static void AddAlbum(string albumName, string artistName, float price)
+        {
+            using (var uow = new UnitOfWork())
             {
                 var albumRepo = uow.GetRepository<IAlbumRepository>();
                 var artistRepo = uow.GetRepository<IArtistRepository>();
                 bool albumExists;
 
-                albumExists = albumRepo.GetByName(album_THANK_U_NEXT, artist_ARIANA_GRANDE) != null;
+                albumExists = albumRepo.GetByName(albumName, artistName) != null;
                 if (!albumExists)
                 {
-                    var artist = artistRepo.GetByName(artist_ARIANA_GRANDE);
+                    var artist = artistRepo.GetByName(artistName);
                     var newAlbum = new Album()
                     {
-                        Name = album_THANK_U_NEXT,
+                        Name = albumName,
                         //TODO Add Image
-                        Price = 10.0f,
+                        Price = price,
                         ArtistId = artist.ArtistId
                     };
                     albumRepo.Add(newAlbum);
                 }
-
-                albumExists = albumRepo.GetByName(album_MERRY_CHRISTMAS, artist_MARIAH_CAREY) != null;
-                if (!albumExists)
-                {
-                    var artist = artistRepo.GetByName(artist_MARIAH_CAREY);
-                    var newAlbum = new Album()
-                    {
-                        Name = album_MERRY_CHRISTMAS,
-                        //TODO Add Image
-                        Price = 7.5f,
-                        ArtistId = artist.ArtistId
-                    };
-                    albumRepo.Add(newAlbum);
-                }
-
-
-                albumExists = albumRepo.GetByName(album_THE_EMINEM_SHOW, artist_EMINEM) != null;
-                if (!albumExists)
-                {
-                    var artist = artistRepo.GetByName(artist_EMINEM);
-                    var newAlbum = new Album()
-                    {
-                        Name = album_THE_EMINEM_SHOW,
-                        //TODO Add Image
-                        Price = 12.5f,
-                        ArtistId = artist.ArtistId
-                    };
-                    albumRepo.Add(newAlbum);
-                }
-
-                albumExists = albumRepo.GetByName(album_ASTROWORLD, artist_TRAVIS_SCOTT) != null;
-                if (!albumExists)
-                {
-                    var artist = artistRepo.GetByName(artist_TRAVIS_SCOTT);
-                    var newAlbum = new Album()
-                    {
-                        Name = album_ASTROWORLD,
-                        //TODO Add Image
-                        Price = 20.0f,
-                        ArtistId = artist.ArtistId
-                    };
-                    albumRepo.Add(newAlbum);
-                }
-
                 uow.Save();
             }
         }
