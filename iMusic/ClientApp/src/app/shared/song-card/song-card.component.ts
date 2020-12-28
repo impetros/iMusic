@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SongDTO } from 'src/app/core/swagger';
 
 @Component({
   selector: 'app-song-card',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./song-card.component.css']
 })
 export class SongCardComponent implements OnInit {
-
+  @Input()
+  song!: SongDTO;
+  
   constructor() { }
 
   ngOnInit(): void {
