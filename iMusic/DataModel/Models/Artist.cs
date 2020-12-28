@@ -9,6 +9,8 @@ namespace iMusic.DataModel.Models
 
         public string Name { get; set; }
 
+        public byte[] Image { get; set; }
+
         public virtual ArtistDetails ArtistDetails { get; set; }
 
         public ICollection<Album> Albums { get; set; }

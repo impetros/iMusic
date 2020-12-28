@@ -13,6 +13,8 @@ namespace iMusic.DataModel.Models
 
         public float Price { get; set; }
 
+        public byte[] Image { get; set; }
+
         public int? AlbumId { get; set; }
         public virtual Album Album { get; set; }
 

@@ -9,6 +9,8 @@ namespace iMusic.DataModel.Models
 
         public string Name { get; set; }
 
+        public byte[] Image { get; set; }
+
         public IList<SongGenre> SongGenres { get; set; } = new List<SongGenre>();
     }
 }
