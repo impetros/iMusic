@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using iMusic.DataModel.Models;
 using iMusic.DataModel.Repository.Interfaces;
 using iMusic.DataModel.UnitOfWork;
 using iMusic.Dto.Model;
@@ -11,20 +10,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace iMusic.Controllers
 {
     [ApiController]
-    [Route("api/songs")]
-    public class SongsController : ControllerBase
+    [Route("api/artists")]
+    public class ArtistsController : ControllerBase
     {
         [HttpGet]
         [AllowAnonymous]
-        public List<SongDTO> GetSongs()
+        public List<ArtistDTO> GetAllArtists()
         {
             using(var uow = new UnitOfWork())
             {
-                var repo = uow.GetRepository<ISongRepository>();
+                var repo = uow.GetRepository<IArtistRepository>();
 
-                var songEntities = repo.GetAllSongs();
+                var artistEntities = repo.GetAll();
 
-                return MapperToDTO.Convert(songEntities);
+                return MapperToDTO.Convert(artistEntities);
             }
         }
     }

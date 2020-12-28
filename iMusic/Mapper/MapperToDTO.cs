@@ -44,7 +44,7 @@ namespace iMusic.Mapper
                 ArtistId = artist.ArtistId,
                 Name = artist.Name,
                 Image = Converter.GetStringFromByteArray(artist.Image),
-                Bio = artist.ArtistDetails.Bio
+                Bio = artist.ArtistDetails != null ? artist.ArtistDetails.Bio : String.Empty
             };
             return artistDTO;
         }

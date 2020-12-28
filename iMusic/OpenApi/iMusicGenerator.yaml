@@ -36,6 +36,18 @@ paths:
             type: array
             items:
               $ref: '#/definitions/SongDTO'
+  artists:
+    get:
+      tags:
+        - "artist"
+      operationId: "getAllArtists"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ArtistDTO'
 definitions:
   ArtistDTO:
     type: object

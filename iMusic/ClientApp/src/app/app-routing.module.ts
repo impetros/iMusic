@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./songs/songs.module').then(p => p.SongsModule)
   },
   {
+    path: 'artists',
+    loadChildren: () => import('./artists/artists.module').then(p => p.ArtistsModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(p => p.LoginModule)
   }
