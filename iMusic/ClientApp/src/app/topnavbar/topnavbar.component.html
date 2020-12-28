@@ -3,13 +3,10 @@
         <a routerLink="/home">Home</a>
         <a routerLink="/artists">Artists</a>
         <a routerLink="/songs">Songs</a>
-        <a routerLink="/songs">Albums</a>
+        <a routerLink="/albums">Albums</a>
     </div>
     <div class="secondPart">
         <a *ngIf="!authService.isAuthenticated()" routerLink="/login">Login</a>
         <a *ngIf="authService.isAuthenticated()" routerLink="/login" (click)="authService.logout()">Logout</a>
     </div>
-    <!-- <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a> -->
 </div>

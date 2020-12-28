@@ -48,6 +48,18 @@ paths:
             type: array
             items:
               $ref: '#/definitions/ArtistDTO'
+  albums:
+    get:
+      tags:
+        - "album"
+      operationId: "getAllAlbums"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AlbumDTO'
 definitions:
   ArtistDTO:
     type: object

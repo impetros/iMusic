@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
+import { AlbumService } from './api/album.service';
 import { ArtistService } from './api/artist.service';
 import { SongService } from './api/song.service';
 
@@ -11,6 +12,7 @@ import { SongService } from './api/song.service';
   declarations: [],
   exports:      [],
   providers: [
+    AlbumService,
     ArtistService,
     SongService ]
 })

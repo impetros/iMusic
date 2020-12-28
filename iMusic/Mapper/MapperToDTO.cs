@@ -9,6 +9,26 @@ namespace iMusic.Mapper
 {
     public class MapperToDTO
     {
+        public static List<AlbumDTO> Convert(List<Album> albums)
+        {
+            List<AlbumDTO> albumDTOs = new List<AlbumDTO>();
+            albums.ForEach(p => albumDTOs.Add(Convert(p)));
+            return albumDTOs;
+        }
+
+        public static AlbumDTO Convert(Album album)
+        {
+            var albumDTO = new AlbumDTO()
+            {
+                AlbumId = album.AlbumId,
+                Name = album.Name,
+                Price = album.Price,
+                Image = Converter.GetStringFromByteArray(album.Image),
+                Songs = Convert(album.Songs.ToList())
+            };
+            return albumDTO;
+        }
+
         public static List<SongDTO> Convert(List<Song> songs)
         {
             List<SongDTO> songDTOs = new List<SongDTO>();

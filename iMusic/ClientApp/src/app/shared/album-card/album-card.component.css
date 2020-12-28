@@ -1,0 +1,66 @@
+section {
+    display: flex;
+    flex-direction: column;
+    width: 20.125rem;
+    height: 24.125rem;
+    padding: 1.25rem 1.25rem 1rem 0;
+  }
+  section:hover {
+    cursor: pointer;
+  }
+  section .card-img {
+    width: 19.625rem;
+    height: 19.625rem;
+    margin-bottom: 0.5rem;
+    border-collapse: separate; 
+    border-radius: 0.4rem;
+  }
+  
+  section .card-img:hover {
+    width: 20.4rem;
+    height: 20.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  section .card-description {
+    height: 2.875rem;
+    display: flex;
+    flex-direction: column;
+  }
+  section .card-description .card-title {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    letter-spacing: 0.24px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  section .card-description .card-title:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  section .card-description .card-subtitle {
+    color: #b3b3b3;
+    font-size: 12px;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    padding: 0;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  @media screen and (max-width: 800px){
+    section{
+      width: 11em;
+      height: 13rem;
+    }
+    section .card-img {
+      width: 10.5em;
+      height: 10.5em;
+    }
+    section .card-img:hover {
+      width: 10.8em;
+      height: 10.8em;
+    }
+  }
