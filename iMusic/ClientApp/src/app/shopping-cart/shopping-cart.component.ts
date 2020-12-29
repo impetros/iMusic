@@ -5,6 +5,9 @@ import { CartService } from '../core/custom/cart.service';
 import { ShoppingCartDTO } from '../core/swagger';
 import { ShopService } from '../core/swagger/api/shop.service';
 
+import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -30,6 +33,8 @@ export class ShoppingCartComponent implements OnInit {
         shoppingCart.userId = parseInt(userId);
       }
       this.shopService.purchase(shoppingCart).subscribe(reponse => {
+        Swal.fire('Purchased successfully', 'Congrats! operation successfull', 'success');
+        this.cartService.clearCart();
       });
     } else {
       this.router.navigate(['/login']);

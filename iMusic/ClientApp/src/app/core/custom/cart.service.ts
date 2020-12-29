@@ -55,6 +55,10 @@ export class CartService {
     return totalPrice;
   }
 
+  public clearCart() {
+    this.initEmptyCart();
+  }
+
   private initEmptyCart(){
     let shoppingCart: ShoppingCartDTO = {
       cartitems: []
