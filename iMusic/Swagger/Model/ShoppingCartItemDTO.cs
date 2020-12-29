@@ -33,12 +33,16 @@ namespace iMusic.Dto.Model
         /// </summary>
         /// <param name="price">price.</param>
         /// <param name="albumId">albumId.</param>
+        /// <param name="album">album.</param>
         /// <param name="songId">songId.</param>
-        public ShoppingCartItemDTO(float? price = default(float?), decimal? albumId = default(decimal?), decimal? songId = default(decimal?))
+        /// <param name="song">song.</param>
+        public ShoppingCartItemDTO(float? price = default(float?), decimal? albumId = default(decimal?), AlbumDTO album = default(AlbumDTO), decimal? songId = default(decimal?), SongDTO song = default(SongDTO))
         {
             this.Price = price;
             this.AlbumId = albumId;
+            this.Album = album;
             this.SongId = songId;
+            this.Song = song;
         }
         
         /// <summary>
@@ -54,10 +58,22 @@ namespace iMusic.Dto.Model
         public decimal? AlbumId { get; set; }
 
         /// <summary>
+        /// Gets or Sets Album
+        /// </summary>
+        [DataMember(Name="album", EmitDefaultValue=false)]
+        public AlbumDTO Album { get; set; }
+
+        /// <summary>
         /// Gets or Sets SongId
         /// </summary>
         [DataMember(Name="songId", EmitDefaultValue=false)]
         public decimal? SongId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Song
+        /// </summary>
+        [DataMember(Name="song", EmitDefaultValue=false)]
+        public SongDTO Song { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,7 +85,9 @@ namespace iMusic.Dto.Model
             sb.Append("class ShoppingCartItemDTO {\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  AlbumId: ").Append(AlbumId).Append("\n");
+            sb.Append("  Album: ").Append(Album).Append("\n");
             sb.Append("  SongId: ").Append(SongId).Append("\n");
+            sb.Append("  Song: ").Append(Song).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -115,9 +133,19 @@ namespace iMusic.Dto.Model
                     this.AlbumId.Equals(input.AlbumId))
                 ) && 
                 (
+                    this.Album == input.Album ||
+                    (this.Album != null &&
+                    this.Album.Equals(input.Album))
+                ) && 
+                (
                     this.SongId == input.SongId ||
                     (this.SongId != null &&
                     this.SongId.Equals(input.SongId))
+                ) && 
+                (
+                    this.Song == input.Song ||
+                    (this.Song != null &&
+                    this.Song.Equals(input.Song))
                 );
         }
 
@@ -134,8 +162,12 @@ namespace iMusic.Dto.Model
                     hashCode = hashCode * 59 + this.Price.GetHashCode();
                 if (this.AlbumId != null)
                     hashCode = hashCode * 59 + this.AlbumId.GetHashCode();
+                if (this.Album != null)
+                    hashCode = hashCode * 59 + this.Album.GetHashCode();
                 if (this.SongId != null)
                     hashCode = hashCode * 59 + this.SongId.GetHashCode();
+                if (this.Song != null)
+                    hashCode = hashCode * 59 + this.Song.GetHashCode();
                 return hashCode;
             }
         }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ShoppingCartDTO, ShoppingCartItemDTO } from '../swagger';
+import { AlbumDTO, ShoppingCartDTO, ShoppingCartItemDTO, SongDTO } from '../swagger';
 
 @Injectable({
   providedIn: 'root'
@@ -23,16 +23,36 @@ export class CartService {
     return shoppingCart.cartitems.length;
   }
 
-  public addItem(songId: number | undefined, albumId: number | undefined, price: number | undefined) { 
-    if(songId == albumId || (songId != null && albumId != null)) return; // only one of them should be non-nullable
+  public addItem(song: SongDTO | null, album: AlbumDTO | null, price: number | undefined) { 
+    if((song == null && album == null) || (song != null && album != null)) return; // only one of them should be non-nullable
     let cart = this.getCart();
-    let shoppingCartItem: ShoppingCartItemDTO = {
-      albumId: albumId,
-      songId: songId,
-      price: price
-    };
-    cart.cartitems?.push(shoppingCartItem);
+    let shoppingCartItem: ShoppingCartItemDTO 
+    if(song) {
+      shoppingCartItem = {
+        songId: song?.songId,
+        song: song,
+        price: price
+      };
+      cart.cartitems?.push(shoppingCartItem);
+    } else if(album) {
+      shoppingCartItem = {
+        albumId: album?.albumId,
+        album: album,
+        price: price
+      };
+      cart.cartitems?.push(shoppingCartItem);
+    }
+    
     this.setCart(cart);
+  }
+
+  public getTotalPrice(): number {
+    let totalPrice: number = 0;
+    let cart = this.getCart();
+    cart.cartitems?.forEach(cartItem => {
+      totalPrice += cartItem.price ?? 0;
+    })
+    return totalPrice;
   }
 
   private initEmptyCart(){

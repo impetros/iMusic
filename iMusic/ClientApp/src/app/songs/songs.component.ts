@@ -18,8 +18,7 @@ export class SongsComponent implements OnInit {
   }
 
   addSongInCartEvent($event: SongDTO) {
-    this.cartService.addItem($event?.songId, undefined, $event.price);
+    this.cartService.addItem($event, null, $event.price);
     console.log(this.cartService.getNumberOfItems());
   }
-
 }

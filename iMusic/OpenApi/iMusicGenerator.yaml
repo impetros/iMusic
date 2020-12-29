@@ -129,8 +129,14 @@ definitions:
         format: float
       albumId:
         type: number
+      album:
+        type: object
+        $ref: '#/definitions/AlbumDTO'
       songId:
         type: number
+      song:
+        type: object
+        $ref: '#/definitions/SongDTO'
   LoginRequest:
     type: object
     description: "This object will be send to login"

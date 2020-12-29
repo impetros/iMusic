@@ -9,9 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AlbumDTO } from './albumDTO';
+import { SongDTO } from './songDTO';
 
 export interface ShoppingCartItemDTO { 
     price?: number;
     albumId?: number;
+    album?: AlbumDTO;
     songId?: number;
+    song?: SongDTO;
 }

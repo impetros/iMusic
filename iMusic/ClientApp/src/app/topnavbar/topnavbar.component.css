@@ -19,8 +19,17 @@
     background-color: #ddd;
     color: #4481eb;
   }
-  
-  .topnav a.active {
-    background-color: #4CAF50;
-    color: white;
+
+  .shopping-cart-topnavbar {
+    background-color: #ddd;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .number-of-items {
+    color: #4481eb;
+  }
+
+  .shopping-cart-img{
+    width: 20px;
   }

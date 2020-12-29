@@ -14,3 +14,7 @@ input {
 a {
   cursor: pointer;
 }
+
+.title {
+  font-size: 40px;
+}

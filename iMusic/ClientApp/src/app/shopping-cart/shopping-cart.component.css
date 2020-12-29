@@ -1,0 +1,10 @@
+.listItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.argListItem {
+    margin: auto 15px;
+}

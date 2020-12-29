@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/custom/api/auth-service';
+import { CartService } from '../core/custom/cart.service';
 import { MustMatch } from '../core/helpers/mustmatch';
 import { LoginRequest } from '../core/swagger';
 
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private cartService: CartService) { 
   }
 
   ngOnInit(): void {
@@ -45,7 +46,11 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.controls["password"].value
       }
       this.authService.login(loginRequest).subscribe(repoonse => {
-        this.router.navigate(['/home']);    
+        if(this.cartService.getNumberOfItems() === 0) {
+          this.router.navigate(['/home']);    
+        } else {
+          this.router.navigate(['/shopping-cart']);
+        }
       }, error => {
         this.loginForm.reset();    
           this.loginForm.setErrors({    
