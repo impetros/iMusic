@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartService } from 'src/app/core/custom/cart.service';
 import { SongDTO } from 'src/app/core/swagger';
 
@@ -10,10 +10,11 @@ import { SongDTO } from 'src/app/core/swagger';
 export class SongCardComponent implements OnInit {
   @Input()
   song!: SongDTO;
-  
+  @Output()
+  addSongInCartEvent = new EventEmitter<SongDTO>();
   artists: string = "";
 
-  constructor(private cartService: CartService) { }
+  constructor() { }
 
   ngOnInit(): void {
     if(this.song && this.song.artists){
@@ -28,7 +29,7 @@ export class SongCardComponent implements OnInit {
   }
 
   addItemToCart() {
-    this.cartService.addItem(this.song?.songId, undefined, this.song.price);
+    this.addSongInCartEvent.emit(this.song);
   }
 
 }
