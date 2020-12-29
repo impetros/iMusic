@@ -7,7 +7,7 @@ namespace iMusic.OAuth2
     {
         public const string User = "User";
 
-        public static AuthorizationPolicy CreatorPolicy()
+        public static AuthorizationPolicy UserPolicty()
         {
             return new AuthorizationPolicyBuilder().RequireAuthenticatedUser().RequireRole(User).Build();
         }
