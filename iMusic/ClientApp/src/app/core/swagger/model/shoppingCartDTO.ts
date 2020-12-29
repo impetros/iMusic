@@ -13,6 +13,7 @@ import { ShoppingCartItemDTO } from './shoppingCartItemDTO';
 
 export interface ShoppingCartDTO { 
     shoppingCartId?: number;
+    userId?: number;
     price?: number;
     date?: Date;
     cartitems?: Array<ShoppingCartItemDTO>;

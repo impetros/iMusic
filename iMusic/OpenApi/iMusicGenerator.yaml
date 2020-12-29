@@ -24,6 +24,20 @@ produces:
 schemes:
 - "https"
 paths:
+  shop/purchase:
+    post:
+      tags:
+        - "shop"
+      operationId: "purchase"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/ShoppingCartDTO"
+      responses:
+        "200":
+          description: "successful operation"
   songs:
     get:
       tags:
@@ -110,6 +124,8 @@ definitions:
     type: object
     properties:
       shoppingCartId:
+        type: number
+      userId:
         type: number
       price:
         type: number      

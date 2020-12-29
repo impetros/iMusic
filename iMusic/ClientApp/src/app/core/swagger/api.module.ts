@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { AlbumService } from './api/album.service';
 import { ArtistService } from './api/artist.service';
+import { ShopService } from './api/shop.service';
 import { SongService } from './api/song.service';
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SongService } from './api/song.service';
   providers: [
     AlbumService,
     ArtistService,
+    ShopService,
     SongService ]
 })
 export class ApiModule {

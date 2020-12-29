@@ -32,12 +32,14 @@ namespace iMusic.Dto.Model
         /// Initializes a new instance of the <see cref="ShoppingCartDTO" /> class.
         /// </summary>
         /// <param name="shoppingCartId">shoppingCartId.</param>
+        /// <param name="userId">userId.</param>
         /// <param name="price">price.</param>
         /// <param name="date">date.</param>
         /// <param name="cartitems">cartitems.</param>
-        public ShoppingCartDTO(decimal? shoppingCartId = default(decimal?), float? price = default(float?), DateTime? date = default(DateTime?), List<ShoppingCartItemDTO> cartitems = default(List<ShoppingCartItemDTO>))
+        public ShoppingCartDTO(decimal? shoppingCartId = default(decimal?), decimal? userId = default(decimal?), float? price = default(float?), DateTime? date = default(DateTime?), List<ShoppingCartItemDTO> cartitems = default(List<ShoppingCartItemDTO>))
         {
             this.ShoppingCartId = shoppingCartId;
+            this.UserId = userId;
             this.Price = price;
             this.Date = date;
             this.Cartitems = cartitems;
@@ -48,6 +50,12 @@ namespace iMusic.Dto.Model
         /// </summary>
         [DataMember(Name="shoppingCartId", EmitDefaultValue=false)]
         public decimal? ShoppingCartId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UserId
+        /// </summary>
+        [DataMember(Name="userId", EmitDefaultValue=false)]
+        public decimal? UserId { get; set; }
 
         /// <summary>
         /// Gets or Sets Price
@@ -76,6 +84,7 @@ namespace iMusic.Dto.Model
             var sb = new StringBuilder();
             sb.Append("class ShoppingCartDTO {\n");
             sb.Append("  ShoppingCartId: ").Append(ShoppingCartId).Append("\n");
+            sb.Append("  UserId: ").Append(UserId).Append("\n");
             sb.Append("  Price: ").Append(Price).Append("\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("  Cartitems: ").Append(Cartitems).Append("\n");
@@ -119,6 +128,11 @@ namespace iMusic.Dto.Model
                     this.ShoppingCartId.Equals(input.ShoppingCartId))
                 ) && 
                 (
+                    this.UserId == input.UserId ||
+                    (this.UserId != null &&
+                    this.UserId.Equals(input.UserId))
+                ) && 
+                (
                     this.Price == input.Price ||
                     (this.Price != null &&
                     this.Price.Equals(input.Price))
@@ -147,6 +161,8 @@ namespace iMusic.Dto.Model
                 int hashCode = 41;
                 if (this.ShoppingCartId != null)
                     hashCode = hashCode * 59 + this.ShoppingCartId.GetHashCode();
+                if (this.UserId != null)
+                    hashCode = hashCode * 59 + this.UserId.GetHashCode();
                 if (this.Price != null)
                     hashCode = hashCode * 59 + this.Price.GetHashCode();
                 if (this.Date != null)

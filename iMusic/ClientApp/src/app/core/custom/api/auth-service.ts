@@ -16,7 +16,7 @@ import { LoginRequest } from "../../swagger";
         .pipe(map(response => {    
           localStorage.setItem('authToken', response.token);    
           localStorage.setItem('username', response.userDetails.username);
-          localStorage.setItem('userId', response.userDetails.userEntityId);
+          localStorage.setItem('userId', response.userDetails.userId);
           return response;    
         }));    
     }    
