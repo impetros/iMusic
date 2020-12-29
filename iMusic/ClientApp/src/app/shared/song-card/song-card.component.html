@@ -1,10 +1,16 @@
 <section>
-    <a>
-        <img class="card-img"
-            src="https://static.wikia.nocookie.net/powerpuff/images/a/a7/Tumblr_lv8big5jK51qizyws.jpg" />
-        <div class="card-description">
-            <span class="card-title">{{ song?.name }}</span>
-            <span class="card-subtitle">{{ song?.price }}</span>
-        </div>
-    </a>
+    <img class="card-img" src="https://static.wikia.nocookie.net/powerpuff/images/a/a7/Tumblr_lv8big5jK51qizyws.jpg" />
+    <div class="card-description">
+        <span class="card-title">{{ song?.name }}</span>
+        <span class="card-sub">
+            <span>
+                <span class="card-subtitle">{{ artists }}</span><br>
+                <span class="card-subtitle">Price: {{ song?.price }} USD</span>
+            </span>
+            
+            <a (click)="addItemToCart()">
+                <img class="shopping-cart" src="../../../assets/SVG/shopping-cart.svg">
+            </a>
+        </span>
+    </div>
 </section>
