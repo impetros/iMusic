@@ -9,7 +9,7 @@ export class CartService {
   constructor() { }
 
   public getCart(): ShoppingCartDTO {
-    let stringCART = sessionStorage.getItem(this.CART);
+    let stringCART = localStorage.getItem(this.CART);
     if(stringCART == null){
       this.initEmptyCart();
       return this.getCart();
@@ -63,7 +63,7 @@ export class CartService {
   }
 
   private setCart(cart: ShoppingCartDTO) {
-    sessionStorage.setItem(this.CART, JSON.stringify(cart));
+    localStorage.setItem(this.CART, JSON.stringify(cart));
   }
 
 }
