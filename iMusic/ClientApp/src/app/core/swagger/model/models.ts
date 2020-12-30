@@ -5,3 +5,4 @@ export * from './loginResponse';
 export * from './shoppingCartDTO';
 export * from './shoppingCartItemDTO';
 export * from './songDTO';
+export * from './userDTO';

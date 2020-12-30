@@ -24,6 +24,20 @@ produces:
 schemes:
 - "https"
 paths:
+  users/register:
+    post:
+      tags:
+        - "user"
+      operationId: "register"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/UserDTO"
+      responses:
+        "200":
+          description: "successful operation"
   shop/purchase:
     post:
       tags:
@@ -75,6 +89,17 @@ paths:
             items:
               $ref: '#/definitions/AlbumDTO'
 definitions:
+  UserDTO:
+    type: object
+    properties:
+      userId:
+        type: number
+      username:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
   ArtistDTO:
     type: object
     properties:

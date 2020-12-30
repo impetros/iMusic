@@ -7,6 +7,18 @@ namespace iMusic.Mapper
 {
     public class MapperToEntity
     {
+        public static User Convert(UserDTO userDTO)
+        {
+            var user = new User()
+            {
+                UserId = userDTO.UserId != null ? (int)userDTO.UserId : 0,
+                Username = userDTO.Username,
+                Email = userDTO.Email,
+                Password = userDTO.Password
+            };
+            return user;
+        }
+
         public static ShoppingCart Convert(ShoppingCartDTO shoppingCartDTO)
         {
             var shoppingCart = new ShoppingCart()

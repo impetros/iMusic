@@ -6,4 +6,6 @@ export * from './shop.service';
 import { ShopService } from './shop.service';
 export * from './song.service';
 import { SongService } from './song.service';
-export const APIS = [AlbumService, ArtistService, ShopService, SongService];
+export * from './user.service';
+import { UserService } from './user.service';
+export const APIS = [AlbumService, ArtistService, ShopService, SongService, UserService];

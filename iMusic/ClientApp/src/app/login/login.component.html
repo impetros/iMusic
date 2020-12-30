@@ -35,19 +35,39 @@
             </a>
           </div>
         </form>
-        <form action="#" class="sign-up-form">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="sign-up-form">
           <h2 class="title">Sign up</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" />
+            <input formControlName="username" type="text" placeholder="Username" (input)="onUsernameChange($event)"/>
+          </div>
+          <div *ngIf="submitted && (g.username.errors || usernameExists)" class="invalid-feedback">
+            <div *ngIf="g.username.errors?.required">Username is required</div>
+            <div *ngIf="usernameExists">Username exists</div>
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" />
+            <input formControlName="email" type="email" placeholder="Email" />
+          </div>
+          <div *ngIf="submitted && g.email.errors" class="invalid-feedback">
+            <div *ngIf="g.email.errors.required">Email is required</div>
+            <div *ngIf="g.email.errors.email">Email is not valid</div>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" />
+            <input formControlName="password" type="password" placeholder="Password" />
+          </div>
+          <div *ngIf="submitted && g.password.errors" class="invalid-feedback">
+            <div *ngIf="g.password.errors.required">Password is required</div>
+            <div *ngIf="g.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input formControlName="confirmPassword" type="password" placeholder="Confirm password" />
+          </div>
+          <div *ngIf="submitted && g.confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="g.confirmPassword.errors.required">Field is required</div>
+            <div *ngIf="g.confirmPassword.errors.mustMatch">Passwords are different</div>
           </div>
           <input type="submit" class="btn" value="Sign up" />
           <p class="social-text">Or Sign up with social platforms</p>

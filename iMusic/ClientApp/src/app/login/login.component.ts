@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { AuthService } from '../core/custom/api/auth-service';
 import { CartService } from '../core/custom/cart.service';
 import { MustMatch } from '../core/helpers/mustmatch';
-import { LoginRequest } from '../core/swagger';
+import { LoginRequest, UserDTO, UserService } from '../core/swagger';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,12 @@ import { LoginRequest } from '../core/swagger';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   registerForm!: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private cartService: CartService) { 
+  usernameExists: boolean = false;
+
+  constructor(private authService: AuthService, private userService: UserService, private formBuilder: FormBuilder, private router: Router, 
+    private cartService: CartService) { 
   }
 
   ngOnInit(): void {
@@ -35,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   get f() { return this.loginForm.controls; }
-
+  get g() { return this.registerForm.controls; }
   onLogInSubmit() {
     this.submitted = true;
 
@@ -63,6 +67,30 @@ export class LoginComponent implements OnInit {
   onLogInReset() {
       this.submitted = false;
       this.loginForm.reset();
+  }
+
+  onRegisterSubmit() {
+    this.submitted = true;
+    if(!this.registerForm.invalid) {
+      let userDTO: UserDTO = {
+        username: this.registerForm.controls["username"].value,
+        email: this.registerForm.controls["email"].value,
+        password: this.registerForm.controls["password"].value
+      };
+      this.userService.register(userDTO).subscribe(response => {
+        if(response == 1) {
+          this.usernameExists = true;
+        } else {
+          Swal.fire('Purchased successfully', 'Congrats! operation successfull', 'success');
+          this.submitted = false;
+          this.registerForm.reset();
+        }
+      })
+    }
+  }
+
+  onUsernameChange($event : any) {
+    this.usernameExists = false;
   }
 
   switchSignUp() {

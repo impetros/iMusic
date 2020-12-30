@@ -7,6 +7,7 @@ import { AlbumService } from './api/album.service';
 import { ArtistService } from './api/artist.service';
 import { ShopService } from './api/shop.service';
 import { SongService } from './api/song.service';
+import { UserService } from './api/user.service';
 
 @NgModule({
   imports:      [],
@@ -16,10 +17,11 @@ import { SongService } from './api/song.service';
     AlbumService,
     ArtistService,
     ShopService,
-    SongService ]
+    SongService,
+    UserService ]
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {
+    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule>  {
         return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory } ]

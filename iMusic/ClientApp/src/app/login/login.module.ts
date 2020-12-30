@@ -6,6 +6,7 @@ import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../core/custom/api/auth-service';
+import { UserService } from '../core/swagger';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import { AuthService } from '../core/custom/api/auth-service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService]
+  providers: [AuthService, UserService]
 })
 export class LoginModule { }
