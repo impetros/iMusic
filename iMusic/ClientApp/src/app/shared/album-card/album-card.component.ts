@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AlbumDTO } from 'src/app/core/swagger';
 
 @Component({
@@ -9,9 +9,15 @@ import { AlbumDTO } from 'src/app/core/swagger';
 export class AlbumCardComponent implements OnInit {
   @Input()
   album!: AlbumDTO;
+  @Output()
+  addAlbumInCartEvent = new EventEmitter<AlbumDTO>();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addItemToCart(){
+    this.addAlbumInCartEvent.emit(this.album);
   }
 
 }

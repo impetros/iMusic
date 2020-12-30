@@ -35,6 +35,8 @@ export class ShoppingCartComponent implements OnInit {
       this.shopService.purchase(shoppingCart).subscribe(reponse => {
         Swal.fire('Purchased successfully', 'Congrats! operation successfull', 'success');
         this.cartService.clearCart();
+        this.cart = this.cartService.getCart();
+        this.priceTotal = this.cartService.getTotalPrice();
       });
     } else {
       this.router.navigate(['/login']);
