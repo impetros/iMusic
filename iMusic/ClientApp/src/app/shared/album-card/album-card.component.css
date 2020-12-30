@@ -58,7 +58,7 @@ section {
   
   @media screen and (max-width: 800px){
     section{
-      width: 11em;
+      width: 10em;
       height: 13rem;
     }
     section .card-img {

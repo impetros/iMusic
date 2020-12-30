@@ -55,12 +55,13 @@ section {
   }
 
   .shopping-cart {
-    width: 40px;
+    width: 30px;
+    margin-right: 10px;
   }
   
   @media screen and (max-width: 800px){
     section{
-      width: 11em;
+      width: 10em;
       height: 13rem;
     }
     section .card-img {

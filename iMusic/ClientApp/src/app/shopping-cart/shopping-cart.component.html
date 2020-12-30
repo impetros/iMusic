@@ -1,17 +1,20 @@
-<section>
+<section class="siteContent">
   <h1 class="title">Shopping Cart</h1>
   <mat-list>
-    <mat-list-item class="pathitem" *ngFor="let item of cart.cartitems; let i = index; last as last" style="height: 100px;">
+    <mat-list-item class="pathitem" *ngFor="let item of cart.cartitems; let i = index; last as last"
+      style="height: 100px;">
       <div *ngIf="item.song != null; else album" class="listItem">
         <h2>Song</h2>
         <p class="argListItem">{{item.song?.name}}</p>
         <p class="argListItem">{{item.song?.length}}</p>
         <p class="argListItem">{{item.price}} USD</p>
       </div>
-      <ng-template #album class="listItem">
-        <h2>Album</h2>
-        <p class="argListItem">{{item.album?.name}}</p>
-        <p class="argListItem">{{item.price}} USD</p>
+      <ng-template #album >
+        <div class="listItem">
+          <h2>Album</h2>
+          <p class="argListItem">{{item.album?.name}}</p>
+          <p class="argListItem">{{item.price}} USD</p>
+        </div>
       </ng-template>
       <mat-divider class="background-divider" *ngIf="!last"></mat-divider>
     </mat-list-item>
