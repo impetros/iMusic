@@ -1,4 +1,7 @@
-<h1 class="title">Songs</h1>
-<section>
-    <app-song-card *ngFor="let song of songs" [song]="song" (addSongInCartEvent)="addSongInCartEvent($event)"></app-song-card>
-</section>
+<div class="siteContent">
+    <h1 class="title">Songs</h1>
+    <section>
+        <app-song-card *ngFor="let song of songs" [song]="song" (addSongInCartEvent)="addSongInCartEvent($event)">
+        </app-song-card>
+    </section>
+</div>

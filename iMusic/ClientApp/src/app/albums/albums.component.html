@@ -1,4 +1,7 @@
-<h1 class="title">Albums</h1>
-<section>
-    <app-album-card *ngFor="let album of albums" [album]="album" (addAlbumInCartEvent)="addAlbumInCartEvent($event)"></app-album-card>
-</section>
+<div class="siteContent">
+    <h1 class="title">Albums</h1>
+    <section>
+        <app-album-card *ngFor="let album of albums" [album]="album"
+            (addAlbumInCartEvent)="addAlbumInCartEvent($event)"></app-album-card>
+    </section>
+</div>
