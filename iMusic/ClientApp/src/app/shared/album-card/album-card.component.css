@@ -2,7 +2,7 @@ section {
     display: flex;
     flex-direction: column;
     width: 20.125rem;
-    height: 24.125rem;
+    height: 22.125rem;
     padding: 1.25rem 1.25rem 1rem 0;
   }
   section .card-img {

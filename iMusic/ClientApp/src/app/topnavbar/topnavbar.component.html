@@ -6,6 +6,7 @@
         <a routerLink="/albums">Albums</a>
     </div>
     <div class="secondPart">
+        <a *ngIf="authService.isAuthenticated()" routerLink="/profile">Profile</a>
         <a routerLink="/shopping-cart" class="shopping-cart-topnavbar">
             <img class="shopping-cart-img" src="../../assets/SVG/shopping-cart.svg">
             <span class="number-of-items">{{cartService.getNumberOfItems()}}</span>

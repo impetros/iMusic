@@ -9,6 +9,19 @@ namespace iMusic.Mapper
 {
     public class MapperToDTO
     {
+        public static UserDTO Convert(User user)
+        {
+            if (user == null) return null;
+            UserDTO userDTO = new UserDTO()
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password
+            };
+            return userDTO;
+        }
+
         public static List<AlbumDTO> Convert(List<Album> albums)
         {
             List<AlbumDTO> albumDTOs = new List<AlbumDTO>();

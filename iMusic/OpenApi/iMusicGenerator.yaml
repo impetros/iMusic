@@ -38,6 +38,34 @@ paths:
       responses:
         "200":
           description: "successful operation"
+  users/user/{id}:
+    get:
+      tags:
+      - "user"
+      operationId: "getUser"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+  users/update:
+    put:
+      tags:
+        - "user"
+      operationId: "update"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/UserDTO"
+      responses:
+        "200":
+          description: "successful operation"
   shop/purchase:
     post:
       tags:

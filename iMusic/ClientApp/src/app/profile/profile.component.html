@@ -1,0 +1,32 @@
+<section class="siteContent">
+    <h1 class="title">Profile</h1>
+    <div>
+        <form [formGroup]="accountForm" (ngSubmit)="onUpdateSubmit()">
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input formControlName="username" type="text" placeholder="Username" (input)="onUsernameChange($event)"/>
+              </div>
+            <div *ngIf="submitted && (g.username.errors || usernameExists)" class="invalid-feedback">
+                <div *ngIf="g.username.errors?.required">Username is required</div>
+                <div *ngIf="usernameExists">Username exists</div>
+              </div>
+              <div class="input-field">
+                <i class="fas fa-envelope"></i>
+                <input formControlName="email" type="email" placeholder="Email" />
+              </div>
+              <div *ngIf="submitted && g.email.errors" class="invalid-feedback">
+                <div *ngIf="g.email.errors.required">Email is required</div>
+                <div *ngIf="g.email.errors.email">Email is not valid</div>
+              </div>
+              <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input formControlName="password" type="password" placeholder="Password" />
+              </div>
+              <div *ngIf="submitted && g.password.errors" class="invalid-feedback">
+                <div *ngIf="g.password.errors.required">Password is required</div>
+                <div *ngIf="g.password.errors.minlength">Password must be at least 6 characters</div>
+              </div>
+              <input type="submit" class="btn" value="Update" />
+        </form>
+    </div>
+</section>
