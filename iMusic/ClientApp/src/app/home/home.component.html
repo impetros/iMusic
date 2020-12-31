@@ -1,1 +1,16 @@
-<p>home works!</p>
+<section class="siteContent">
+    <h1>Songs</h1>
+    <div class="section">
+        <app-song-card *ngFor="let song of songs" [song]="song" (addSongInCartEvent)="addSongInCartEvent($event)">
+        </app-song-card>
+    </div>
+    <h1>Artists</h1>
+    <div class="section">
+        <app-artist-card *ngFor="let artist of artists" [artist]="artist"></app-artist-card>
+    </div>
+    <h1>Albums</h1>
+    <div class="section">
+        <app-album-card *ngFor="let album of albums" [album]="album"
+        (addAlbumInCartEvent)="addAlbumInCartEvent($event)"></app-album-card>
+    </div>
+</section>
