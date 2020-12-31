@@ -1,0 +1,8 @@
+TODO LIST:
+
+1. Sa afisez albumele si melodiile unui artist
+2. Sa afisez melodiile unui album
+3. Sa afisez cumparaturile unui user
+4. Search bar (KMP Algorithm)
+5. Refa performanta pentru pagina de home (dtouri light)
+6. Logare cu Gmail, Facebook etc.(Identity Server) -- nu e mandatory
