@@ -62,6 +62,46 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
+    public _delete(id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public _delete(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public _delete(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public _delete(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling _delete.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('delete',`${this.basePath}users/delete/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param id 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
     public getUser(id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public getUser(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public getUser(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;

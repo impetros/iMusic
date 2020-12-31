@@ -29,12 +29,12 @@ namespace iMusic.DataModel.Repository.Implementation
 
         public virtual void Delete(object id)
         {
-            throw new ApplicationException("No phisical deletion in this app. Use IsDeleted property instead.");
+            _context.Set<TEntity>().Remove(_dbSet.Find(id));
         }
 
         public virtual void Delete(TEntity entityToDelete)
         {
-            throw new ApplicationException("No phisical deletion in this app. Use IsDeleted property instead.");
+            _context.Set<TEntity>().Remove(entityToDelete);
         }
 
         public TEntity Update(TEntity entity)

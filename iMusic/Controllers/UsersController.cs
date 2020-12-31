@@ -41,6 +41,19 @@ namespace iMusic.Controllers
             }
         }
 
+        [HttpDelete("delete/{id}")]
+        [Authorize(Policy = Policies.User)]
+        public int Delete(int id)
+        {
+            using(var uow = new UnitOfWork())
+            {
+                var repo = uow.GetRepository<IUserRepository>();
+                repo.Delete(id);
+                uow.Save();
+                return 0;
+            }
+        }
+
 
         [HttpPost("register")]
         [AllowAnonymous]

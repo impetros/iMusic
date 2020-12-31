@@ -60,6 +60,13 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  deleteAccount() {
+    this.userService._delete(this.userId).subscribe(response => {
+      Swal.fire('Account deleted', 'Congrats! operation successfull', 'success');
+      this.authService.logout();
+    })
+  }
+
   onUsernameChange($event : any) {
     this.usernameExists = false;
   }

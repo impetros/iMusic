@@ -27,6 +27,8 @@
                 <div *ngIf="g.password.errors.minlength">Password must be at least 6 characters</div>
               </div>
               <input type="submit" class="btn" value="Update" />
+              <input type="button" class="btn del-btn" value="Delete account" (click)="deleteAccount()">
         </form>
+        
     </div>
 </section>
